@@ -62,7 +62,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `http://localhost:8000/order-success/${currentOrder?.id}`,
+        return_url: `https://vshop-ecommerce-project-git-master-vijay-prataps-projects.vercel.app/order-success/${currentOrder?.id}`,
       },
     });
 
