@@ -4,7 +4,6 @@ const { SubCategory } = require("../models/SubCategoryModel");
 
 exports.createCategory = async (req, res) => {
   if (req.file) {
-
     const newCategory = { ...req.body, label: req.file.path };
 
     const categories = new Category(newCategory);
@@ -35,21 +34,24 @@ exports.fetchAllCategory = async (req, res) => {
         .skip(size * (Page - 1))
         .limit(size);
       totalCategory = totalCategory.find(condition).count();
-    } else if (req.query._limit) {
+    }
+    if (req.query._limit) {
       const size = req.query._limit;
 
       category = category.find({}).limit(size);
-    } else if (req.query._limit && req.query._page) {
+    }
+    if (req.query._limit && req.query._page) {
       const size = req.query._limit;
 
       const page = req.query._page;
 
       category = category.skip(size * (page - 1)).limit(size);
-    } else if (value) {
+    }
+    if (value) {
       condition.value = { $regex: value, $options: "i" };
       category = category.find(condition);
     }
-    const categories = await category.find({}).exec();
+    const categories = await category.exec();
     const TotalCat = await totalCategory.count().exec();
 
     res.set({ "X-Total-Count": TotalCat });

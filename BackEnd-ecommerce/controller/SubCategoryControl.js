@@ -35,10 +35,12 @@ exports.fetchAllSubCategory = async (req, res) => {
         .populate("category");
 
       totalSubCategory = totalSubCategory.find(condition).count();
-    } else if (req.query._limit) {
+    }
+    if (req.query._limit) {
       const size = req.query._limit;
       subCategory = subCategory.find({}).limit(size).populate("category");
-    } else if (req.query._limit && req.query._page) {
+    }
+    if (req.query._limit && req.query._page) {
       const size = req.query._limit;
       const Page = req.query._page;
 
@@ -46,16 +48,16 @@ exports.fetchAllSubCategory = async (req, res) => {
         .skip(size * (Page - 1))
         .limit(size)
         .populate("category");
-    }else if(value){
+    }
+    if (value) {
       condition.value = { $regex: value, $options: "i" };
 
-      subCategory = subCategory.find(condition).populate("category")
-
+      subCategory = subCategory.find(condition).populate("category");
     } else {
       subCategory = subCategory.find({}).populate("category");
     }
 
-    const doc = await subCategory.find({}).exec();
+    const doc = await subCategory.exec();
     const totalSubcat = await totalSubCategory.count().exec();
 
     res.set({ "X-Total-Count": totalSubcat });

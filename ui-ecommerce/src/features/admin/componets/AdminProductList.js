@@ -197,7 +197,7 @@ const ProductList = () => {
                       </tr>
                     </thead>
                     <tbody className="px-4">
-                      {products.map((product, index) => (
+                      {products?.map((product, index) => (
                         <tr role="row" key={index}>
                           <td className="py-3 text-sm" role="cell">
                             <div className="flex items-center gap-2">
@@ -208,16 +208,20 @@ const ProductList = () => {
                           </td>
                           <td className="py-3 text-sm" role="cell">
                             <div className="flex items-center gap-2">
-                              <p className="text-sm font-medium text-navy-700 dark:text-white">
-                                {product.category.value}
-                              </p>
+                              {product?.category ? (
+                                <p className="text-sm font-medium text-navy-700 dark:text-white">
+                                  {product?.category?.value}
+                                </p>
+                              ) : null}
                             </div>
                           </td>
                           <td className="py-3 text-sm" role="cell">
                             <div className="flex items-center pt-1 gap-2">
-                              <p className="text-sm font-medium text-navy-700 dark:text-white">
-                                {product.subCategory.value}
-                              </p>
+                              {product?.subCategory ? (
+                                <p className="text-sm font-medium text-navy-700 dark:text-white">
+                                  {product?.subCategory?.value}
+                                </p>
+                              ) : null}
                             </div>
                           </td>
                           <td className="py-3 text-sm" role="cell">

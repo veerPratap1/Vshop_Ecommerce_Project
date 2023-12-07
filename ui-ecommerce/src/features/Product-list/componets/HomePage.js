@@ -186,7 +186,7 @@ function ProductGrid({ products, categories, subCategory, brand }) {
                       />
                     </div>
                   ) : (
-                    categories?.map((cat) => (
+                    categories?.slice(0,4).map((cat) => (
                       <div
                         key={cat.id}
                         className="group relative shadow-2xl p-2 bg-white mb-8 rounded"
@@ -259,7 +259,7 @@ function ProductGrid({ products, categories, subCategory, brand }) {
                       />
                     </div>
                   ) : (
-                    subCategory?.map((Subcat) => (
+                    subCategory?.slice(0,4).map((Subcat) => (
                       <div
                         key={Subcat.id}
                         className="group relative shadow-2xl p-2 bg-white mb-8 rounded"
@@ -332,7 +332,7 @@ function ProductGrid({ products, categories, subCategory, brand }) {
                       />
                     </div>
                   ) : (
-                    brand?.map((brand) => (
+                    brand?.slice(0,4).map((brand) => (
                       <div
                         key={brand.id}
                         className="group relative shadow-2xl p-2 bg-white mb-8 rounded"

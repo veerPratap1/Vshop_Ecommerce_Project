@@ -34,20 +34,23 @@ exports.fetchAllBrand = async (req, res) => {
         .limit(size);
 
       totalbrand = totalbrand.find(condition).count();
-    } else if (req.query._limit) {
+    }
+    if (req.query._limit) {
       const size = req.query._limit;
       brand = brand.find({}).limit(size);
-    } else if (req.query._limit && req.query._page) {
+    }
+    if (req.query._limit && req.query._page) {
       const size = req.query._limit;
       const Page = req.query._page;
 
       brand = brand.skip(size * (Page - 1)).limit(size);
-    } else if (value) {
+    }
+    if (value) {
       condition.value = { $regex: value, $options: "i" };
       brand = brand.find(condition);
     }
 
-    const doc = await brand.find({}).exec();
+    const doc = await brand.exec();
     const totalBrand = await totalbrand.count().exec();
 
     res.set({ "X-Total-Count": totalBrand });

@@ -25,17 +25,18 @@ export default function AllBrand(props) {
     setPage(page);
   };
 
-  useEffect(() => {
-    setPage(1);
-  }, [totalItems]);
-
+  
   useEffect(() => {
     window.scrollTo(0, 0);
     const pagination = { _page: page, _limit: ITEMS_PAGE };
-
+    
     dispatch(fetchBrandAsync(pagination));
   }, [dispatch, page]);
 
+  useEffect(() => {
+    setPage(1);
+  }, [totalItems]);
+  
   useEffect(() => {
     window.scrollTo(0, 0);
 

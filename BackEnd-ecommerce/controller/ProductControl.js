@@ -154,7 +154,7 @@ exports.updateProductImagesArray = async (req, res) => {
         {
           new: true,
         }
-      )
+      );
 
       const doc2 = await Product.findById({ _id: doc.id })
         .populate("size")

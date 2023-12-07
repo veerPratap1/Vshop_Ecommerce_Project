@@ -47,7 +47,7 @@ export default function ProductListById(props) {
   const param = useParams();
 
   useEffect(() => {
-    if (param.category) {
+    if (param?.category) {
       const newProduct = {
         category: param.category,
         _page: page,
@@ -55,7 +55,8 @@ export default function ProductListById(props) {
         ...sort,
       };
       dispatch(fetchAllProductAsync(newProduct));
-    } else if (param.subCategory) {
+    }
+    if (param?.subCategory) {
       const newProduct = {
         subCategory: param.subCategory,
         _page: page,
@@ -63,7 +64,8 @@ export default function ProductListById(props) {
         ...sort,
       };
       dispatch(fetchAllProductAsync(newProduct));
-    } else if (param.brand) {
+    }
+    if (param?.brand) {
       const newProduct = {
         brand: param.brand,
         _page: page,
@@ -230,7 +232,7 @@ function ProductGrid({ products, toProductDetail }) {
               products?.map((product) => (
                 <div className="max-w-2xl bg-slate-100 dark:bg-slate-900 shadow-lg rounded">
                   <button
-                    onClick={()=>toProductDetail(product.id)}
+                    onClick={() => toProductDetail(product.id)}
                     className="bg-slate-100 dark:bg-slate-900 shadow-md rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700"
                   >
                     <div className=" lg:h-60 bg-white m-2 overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75">
