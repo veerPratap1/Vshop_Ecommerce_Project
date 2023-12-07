@@ -1,0 +1,13 @@
+{
+  "builds": [
+    {
+      "src": "BackEnd-ecommerce/Index.js",
+      "use": "@vercel/node"
+    },
+  {
+      "src": "BackEnd-ecommerce/build/**",
+      "use": "@vercel/static"
+    }
+  ],
+ "rewrites": [{ "source": "/(.*)", "destination": "BackEnd-ecommerce/Index.js" }]
+}

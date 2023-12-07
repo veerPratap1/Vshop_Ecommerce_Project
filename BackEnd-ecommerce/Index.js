@@ -13,6 +13,7 @@ const CartRouter = require("./routes/CartRoute");
 const OrderRouter = require("./routes/OrderRoute");
 const passport = require("passport");
 const session = require("express-session");
+const MemoryStore = require('memorystore')(session)
 const LocalStrategy = require("passport-local").Strategy;
 const crypto = require("crypto");
 const { User } = require("./models/UserModel");
@@ -82,6 +83,10 @@ server.use(express.static(path.resolve(__dirname, "build")));
 server.use(cookieParser());
 server.use(
   session({
+    cookie: { maxAge: 86400000 },
+    store: new MemoryStore({
+      checkPeriod: 86400000 // prune expired entries every 24h
+    }),
     secret: process.env.SESSION_KEY,
     resave: false, // don't save session if unmodified
     saveUninitialized: false, // don't create session until something stored
@@ -100,7 +105,7 @@ server.use(express.urlencoded({ extended: true }));
 
 server.use(
   "/uploads/Product_img",
-  express.static(path.join(path.resolve(), "/uploads/Product_img"))
+  express.static(path.join(path.resolve(__dirname, "uploads", "Product_img")))
 );
 
 //app routes
