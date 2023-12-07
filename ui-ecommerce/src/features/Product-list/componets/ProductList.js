@@ -434,10 +434,10 @@ function ProductGrid({ products }) {
             ) : (
               products?.map((product) => (
                 <>
-                  <div className="max-w-2xl bg-slate-100 shadow-lg rounded">
+                  <div className="max-w-2xl bg-slate-100 dark:bg-slate-900 shadow-lg rounded">
                     <Link
                       to={`product-detail/${product.id}`}
-                      className="bg-slate-100 shadow-md rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700"
+                      className="bg-slate-100 dark:bg-slate-900 shadow-md rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700"
                     >
                       <div className=" lg:h-60 bg-white m-2 overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75">
                         <img
@@ -448,7 +448,7 @@ function ProductGrid({ products }) {
                       </div>
                       <div className="px-3 pb-5">
                         <div>
-                          <h3 className="text-gray-900 font-semibold text-xl tracking-tight dark:text-white">
+                          <h3 className="text-gray-900 font-semibold text-xl tracking-tight dark:text-gray-200">
                             {product.title}
                           </h3>
                         </div>

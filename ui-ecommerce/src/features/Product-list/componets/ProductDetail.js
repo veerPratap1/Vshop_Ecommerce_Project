@@ -613,6 +613,7 @@ export default function ProductDetail() {
                 <div className="w-100% h-[200px]">
                   <ResponsiveContainer width="100%" height="100%">
                     <ComposedChart
+                    style={{padding: "8px"}}
                       layout="vertical"
                       width={500}
                       height={400}
@@ -799,8 +800,8 @@ export default function ProductDetail() {
                                 <span> Just Now </span>
                               ) : (
                                 new Date(review.createdAt)
-                                  .toDateString()
-                                  .substring(0, 9)
+                                  .toString()
+                                  .substring(4, 15)
                               )}
                             </div>
                           </div>
