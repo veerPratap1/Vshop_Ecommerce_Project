@@ -229,7 +229,7 @@ function ProductGrid({ products, toProductDetail }) {
             ) : (
               products?.map((product) => (
                 <div className="max-w-2xl bg-slate-100 dark:bg-slate-900 shadow-lg rounded">
-                  <Link
+                  <button
                     onClick={()=>toProductDetail(product.id)}
                     className="bg-slate-100 dark:bg-slate-900 shadow-md rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700"
                   >
@@ -328,7 +328,7 @@ function ProductGrid({ products, toProductDetail }) {
                         <p className="text-sm text-red-500">Out of Stock</p>
                       )}
                     </div>
-                  </Link>
+                  </button>
                 </div>
               ))
             )}

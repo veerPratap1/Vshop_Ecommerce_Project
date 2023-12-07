@@ -9,7 +9,6 @@ import {
 } from "../../orders/OrderSlice";
 import logo from "../../comman/image/InShot_20231201_124429607.png";
 import { discountedPrice } from "../../../app/constant";
-import axios from "axios";
 import { saveAs } from "file-saver";
 
 const OrderDetailInvoice = () => {

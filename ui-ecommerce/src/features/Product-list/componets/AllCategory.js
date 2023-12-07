@@ -58,7 +58,7 @@ export default function AllCategory(props) {
 
       dispatch(fetchCatagoryAsync(pagination));
     }
-  }, [props.value, dispatch]);
+  }, [props.value, dispatch, page]);
 
   return (
     <>

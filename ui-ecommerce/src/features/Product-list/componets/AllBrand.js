@@ -34,7 +34,7 @@ export default function AllBrand(props) {
     const pagination = { _page: page, _limit: ITEMS_PAGE };
 
     dispatch(fetchBrandAsync(pagination));
-  }, [dispatch]);
+  }, [dispatch, page]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -52,7 +52,7 @@ export default function AllBrand(props) {
 
       dispatch(fetchBrandAsync(pagination));
     }
-  }, [props.value]);
+  }, [dispatch, props, page]);
 
   return (
     <>

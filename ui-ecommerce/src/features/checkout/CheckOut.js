@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate} from "react-router-dom";
 import { deleteCartItemAsync, selectCartItem } from "../Cart/CartSlice";
 import { useForm } from "react-hook-form";
-import { addOrder, createOrderAsync, selectCurrentOrder } from "../orders/OrderSlice";
+import { createOrderAsync, selectCurrentOrder } from "../orders/OrderSlice";
 import { UpdateUserInfoAsync, selectUserInfo } from "../user/UserSlice";
 import { discountedPrice } from "../../app/constant";
 
@@ -14,8 +14,6 @@ export default function CheckOut() {
   const handleRemove = (itemId) => {
     dispatch(deleteCartItemAsync(itemId));
   };
-
-  const navigate = useNavigate()
 
   const totalPrice = items.reduce(
     (amount, item) => amount + discountedPrice(item.product) * item.quantity,
