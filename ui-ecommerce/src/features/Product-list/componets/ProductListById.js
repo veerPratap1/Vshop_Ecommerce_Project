@@ -3,13 +3,12 @@ import {
   fetchAllProductAsync,
   selectAllProduct,
   selectProductStatus,
-  selectTotalItems,
 } from "../ProductSlice";
 import { Fragment, useEffect, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 
 import { ChevronDownIcon, Squares2X2Icon } from "@heroicons/react/20/solid";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ITEMS_PAGE, discountedPrice } from "../../../app/constant";
 import { Pagination } from "../../comman/Pagination";
 import ReactLoading from "react-loading";
@@ -28,7 +27,6 @@ export default function ProductListById(props) {
   const dispatch = useDispatch();
 
   const products = useSelector(selectAllProduct);
-  const totalItems = useSelector(selectTotalItems);
 
   let [sort, setSort] = useState({});
   let [page, setPage] = useState(1);
@@ -46,35 +44,28 @@ export default function ProductListById(props) {
 
   const param = useParams();
 
+  const productById = products?.filter((product) => {
+    if (param.category) {
+      return product.category.id === param.category;
+    }
+    if (param.subCategory) {
+      return product.subCategory.id === param.subCategory;
+    }
+    if (param.brand) {
+      return product.brand.id === param.brand;
+    }
+    return null;
+  }, {});
+
+  const totalItems = productById.length;
+
   useEffect(() => {
-    if (param?.category) {
-      const newProduct = {
-        category: param.category,
-        _page: page,
-        _limit: ITEMS_PAGE,
-        ...sort,
-      };
-      dispatch(fetchAllProductAsync(newProduct));
-    }
-    if (param?.subCategory) {
-      const newProduct = {
-        subCategory: param.subCategory,
-        _page: page,
-        _limit: ITEMS_PAGE,
-        ...sort,
-      };
-      dispatch(fetchAllProductAsync(newProduct));
-    }
-    if (param?.brand) {
-      const newProduct = {
-        brand: param.brand,
-        _page: page,
-        _limit: ITEMS_PAGE,
-        ...sort,
-      };
-      dispatch(fetchAllProductAsync(newProduct));
-    }
-  }, [dispatch, param, page, sort]);
+    const newProduct = {
+      _page: page,
+      ...sort,
+    };
+    dispatch(fetchAllProductAsync(newProduct));
+  }, [dispatch, page, sort]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -85,38 +76,24 @@ export default function ProductListById(props) {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    const value = props.value;
+    if (props.value) {
+      const value = props.value;
 
-    const newtitle = { title: value, _page: page, _limit: ITEMS_PAGE, ...sort };
+      const newtitle = {
+        title: value,
+        _page: page,
+        _limit: ITEMS_PAGE,
+        ...sort,
+      };
 
-    dispatch(fetchAllProductAsync(newtitle));
-
-    if (!value) {
-      if (param.category) {
-        const newProduct = {
-          category: param.category,
-          _page: page,
-          _limit: ITEMS_PAGE,
-          ...sort,
-        };
-        dispatch(fetchAllProductAsync(newProduct));
-      } else if (param.subCategory) {
-        const newProduct = {
-          subCategory: param.subCategory,
-          _page: page,
-          _limit: ITEMS_PAGE,
-          ...sort,
-        };
-        dispatch(fetchAllProductAsync(newProduct));
-      } else if (param.brand) {
-        const newProduct = {
-          brand: param.brand,
-          _page: page,
-          _limit: ITEMS_PAGE,
-          ...sort,
-        };
-        dispatch(fetchAllProductAsync(newProduct));
-      }
+      dispatch(fetchAllProductAsync(newtitle));
+    }
+    if (!props.value) {
+      const newProduct = {
+        _page: page,
+        ...sort,
+      };
+      dispatch(fetchAllProductAsync(newProduct));
     }
   }, [dispatch, sort, page, param, props]);
 
@@ -195,7 +172,7 @@ export default function ProductListById(props) {
               <div className="lg:col-span-5 py-5">
                 {/* Your content */}
                 <ProductGrid
-                  products={products}
+                  products={productById}
                   toProductDetail={toProductDetail}
                 ></ProductGrid>
               </div>
@@ -230,10 +207,10 @@ function ProductGrid({ products, toProductDetail }) {
               </div>
             ) : (
               products?.map((product) => (
-                <div className="max-w-2xl bg-slate-100 dark:bg-slate-900 shadow-lg rounded">
+                <div className="ms-2 md:ms-0 w-40 md:w-72 bg-slate-100 dark:bg-slate-900 shadow-lg rounded">
                   <button
                     onClick={() => toProductDetail(product.id)}
-                    className="bg-slate-100 dark:bg-slate-900 shadow-md rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700"
+                    className="w-40 md:w-72 bg-slate-100 dark:bg-slate-900 max-w-sm rounded-lg dark:bg-gray-800 dark:border-gray-700"
                   >
                     <div className=" lg:h-60 bg-white m-2 overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75">
                       <img
@@ -244,7 +221,7 @@ function ProductGrid({ products, toProductDetail }) {
                     </div>
                     <div className="px-3 pb-5">
                       <div>
-                        <h3 className="text-gray-900 font-semibold text-xl tracking-tight dark:text-gray-200">
+                        <h3 className="text-gray-900 font-semibold text-sm lg:text-xl tracking-tight dark:text-gray-200">
                           {product.title}
                         </h3>
                       </div>
