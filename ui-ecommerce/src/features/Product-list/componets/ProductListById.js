@@ -8,10 +8,7 @@ import {
 import { Fragment, useEffect, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 
-import {
-  ChevronDownIcon,
-  Squares2X2Icon,
-} from "@heroicons/react/20/solid";
+import { ChevronDownIcon, Squares2X2Icon } from "@heroicons/react/20/solid";
 import { useNavigate, useParams } from "react-router-dom";
 import { ITEMS_PAGE, discountedPrice } from "../../../app/constant";
 import { Pagination } from "../../comman/Pagination";
@@ -231,132 +228,107 @@ function ProductGrid({ products, toProductDetail }) {
               </div>
             ) : (
               products?.map((product) => (
-                <div
-                  key={product.id}
-                  className="group relative p-2 bg-slate-100 rounded"
-                >
-                  <div onClick={() => toProductDetail(product.id)}>
-                    <div className="h-28 lg:h-60  overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 lg:h-60">
-                      {status === "loading" ? (
-                        <ReactLoading
-                          type={"spinningBubbles"}
-                          color={"#a4bbc9"}
-                          height={50}
-                          width={50}
-                        />
-                      ) : (
-                        <img
-                          src={`/${product.thumbnail}`}
-                          alt="product"
-                          className="h-full w-full object-fit object-contain lg:h-full lg:w-full"
-                        />
-                      )}
+                <div className="max-w-2xl bg-slate-100 shadow-lg rounded">
+                  <Link
+                    to={`product-detail/${product.id}`}
+                    className="bg-slate-100 shadow-md rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700"
+                  >
+                    <div className=" lg:h-60 bg-white m-2 overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75">
+                      <img
+                        className=" p-2 h-full w-full object-contain lg:h-full lg:w-full"
+                        src={`/${product.thumbnail}`}
+                        alt="product"
+                      />
                     </div>
-                    <div className="mt-4 flex justify-between">
+                    <div className="px-3 pb-5">
                       <div>
-                        <h3 className="text-md text-gray-700">
-                          <div href={product.brand}>
-                            <span
-                              aria-hidden="true"
-                              className="absolute inset-0"
-                            />
-                            {product.title}
-                          </div>
+                        <h3 className="text-gray-900 font-semibold text-xl tracking-tight dark:text-white">
+                          {product.title}
                         </h3>
-
-                        <div className="mt-1 text-sm text-gray-500">
-                          <span className="flex items-center">
-                            <ul className="flex">
-                              <li>
-                                <div className="w-5 text-yellow-400 dark:text-yellow-500">
-                                  <i
-                                    className={
-                                      product.rating >= 1
-                                        ? "fas fa-star"
-                                        : product.rating >= 0.5
-                                        ? "fas fa-star-half-alt"
-                                        : "far fa-star"
-                                    }
-                                  ></i>
-                                </div>
-                              </li>
-                              <li>
-                                <div className="w-5  text-yellow-400 dark:text-yellow-500">
-                                  <i
-                                    className={
-                                      product.rating >= 2
-                                        ? "fas fa-star"
-                                        : product.rating >= 1.5
-                                        ? "fas fa-star-half-alt"
-                                        : "far fa-star"
-                                    }
-                                  ></i>
-                                </div>
-                              </li>
-                              <li>
-                                <div className="w-5  text-yellow-400 dark:text-yellow-500">
-                                  <i
-                                    className={
-                                      product.rating >= 3
-                                        ? "fas fa-star"
-                                        : product.rating >= 2.5
-                                        ? "fas fa-star-half-alt"
-                                        : "far fa-star"
-                                    }
-                                  ></i>
-                                </div>
-                              </li>
-                              <li>
-                                <div className="w-5  text-yellow-400 dark:text-yellow-500">
-                                  <i
-                                    className={
-                                      product.rating >= 4
-                                        ? "fas fa-star"
-                                        : product.rating >= 3.5
-                                        ? "fas fa-star-half-alt"
-                                        : "far fa-star"
-                                    }
-                                  ></i>
-                                </div>
-                              </li>
-                              <li>
-                                <div className="w-5  text-yellow-400 dark:text-yellow-500">
-                                  <i
-                                    className={
-                                      product.rating >= 5
-                                        ? "fas fa-star"
-                                        : product.rating >= 4.5
-                                        ? "fas fa-star-half-alt"
-                                        : "far fa-star"
-                                    }
-                                  ></i>
-                                </div>
-                              </li>
-                            </ul>
-                            <span className="align-bottom ms-1 text-sm">
-                              ({product.numReviews})
-                            </span>
-                          </span>
+                      </div>
+                      <div className="flex justify-between pe-20 items-center md:mt-1 md:mb-1">
+                        <div className="text-yellow-400 dark:text-yellow-500">
+                          <i
+                            className={
+                              product.rating >= 1
+                                ? "fas fa-star text-xs lg:text-md"
+                                : product.rating >= 0.5
+                                ? "fas fa-star-half-alt text-xs lg:text-md"
+                                : "far fa-star text-xs lg:text-md"
+                            }
+                          ></i>
+                        </div>
+                        <div className="text-yellow-400 dark:text-yellow-500">
+                          <i
+                            className={
+                              product.rating >= 2
+                                ? "fas fa-star text-xs lg:text-md"
+                                : product.rating >= 1.5
+                                ? "fas fa-star-half-alt text-xs lg:text-md"
+                                : "far fa-star text-xs lg:text-md"
+                            }
+                          ></i>
+                        </div>
+                        <div className="text-yellow-400 dark:text-yellow-500">
+                          <i
+                            className={
+                              product.rating >= 3
+                                ? "fas fa-star text-xs lg:text-md"
+                                : product.rating >= 2.5
+                                ? "fas fa-star-half-alt text-xs lg:text-md"
+                                : "far fa-star text-xs lg:text-md"
+                            }
+                          ></i>
+                        </div>
+                        <div className="text-yellow-400 dark:text-yellow-500">
+                          <i
+                            className={
+                              product.rating >= 4
+                                ? "fas fa-star text-xs lg:text-md"
+                                : product.rating >= 3.5
+                                ? "fas fa-star-half-alt text-xs lg:text-md"
+                                : "far fa-star text-xs lg:text-md"
+                            }
+                          ></i>
+                        </div>
+                        <div className="text-yellow-400 dark:text-yellow-500">
+                          <i
+                            className={
+                              product.rating >= 5
+                                ? "fas fa-star text-xs lg:text-md"
+                                : product.rating >= 4.5
+                                ? "fas fa-star-half-alt text-xs lg:text-md"
+                                : "far fa-star text-xs lg:text-md"
+                            }
+                          ></i>
+                        </div>
+                        <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">
+                          {product.numReviews}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="text-white me-2 bg-orange-600 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium text-[9px] md:text-sm px-1 py-1 md:px-2 md:py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                          Discount Offer {product.discountPercentage}%
+                        </div>
+                        <div>
+                          <p className="text-xs ps-2 mt-2 line-through font-semibold text-red-500">
+                            ${product.price}
+                          </p>
+                          <p className="text-md  md:text-lg font-semibold text-blue-500">
+                            ${discountedPrice(product)}
+                          </p>
                         </div>
                       </div>
-                      <div>
-                        <p className="text-md line-through font-semibold text-red-500">
-                          ${product.price}
-                        </p>
-                        <p className="text-lg font-semibold text-blue-500">
-                          ${discountedPrice(product)}
-                        </p>
-                      </div>
+                      {product.deleted && (
+                        <span className="text-sm text-red-500">
+                          Product is deleted
+                        </span>
+                      )}
+                      {product.stock <= 0 && (
+                        <p className="text-sm text-red-500">Out of Stock</p>
+                      )}
                     </div>
-                    {product.deleted && (
-                      <span className="text-sm text-red-500">
-                        Product is deleted
-                      </span>
-                    )}
-                    {product.stock <= 0 && (
-                      <p className="text-sm text-red-500">Out of Stock</p>
-                    )}
-                  </div>
+                  </Link>
                 </div>
               ))
             )}
