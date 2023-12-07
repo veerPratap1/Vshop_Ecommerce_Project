@@ -230,7 +230,7 @@ function ProductGrid({ products, toProductDetail }) {
               products?.map((product) => (
                 <div className="max-w-2xl bg-slate-100 shadow-lg rounded">
                   <Link
-                    to={`product-detail/${product.id}`}
+                    onClick={()=>toProductDetail(product.id)}
                     className="bg-slate-100 shadow-md rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700"
                   >
                     <div className=" lg:h-60 bg-white m-2 overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75">
