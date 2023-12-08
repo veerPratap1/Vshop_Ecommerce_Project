@@ -9,5 +9,5 @@
       "use": "@vercel/static"
     }
   ],
-  "rewrites": [{ "source": "/api/(.*)", "destination": "BackEnd-ecommerce/api" }]
+  "rewrites": [{ "source": "/api/(.*)", "destination": "BackEnd-ecommerce/Index.js" }]
 }
