@@ -1,7 +1,7 @@
 // A mock function to mimic making an async request for data
 export function createUser(userData) {
   return new Promise(async (resolve) => {
-    const response = await fetch("/auth/signUp", {
+    const response = await fetch(" /api/auth/signUp", {
       method: "POST",
       body: userData,
     });
@@ -12,7 +12,7 @@ export function createUser(userData) {
 export function checkUser(loginData) {
   return new Promise(async (resolve, reject) => {
     try {
-      const response = await fetch("/auth/login", {
+      const response = await fetch(" /api/auth/login", {
         method: "POST",
         body: JSON.stringify(loginData),
         headers: { "content-type": "application/json" },
@@ -32,7 +32,7 @@ export function checkUser(loginData) {
 export function checkAuth() {
   return new Promise(async (resolve, reject) => {
     try {
-      const response = await fetch("/auth/check");
+      const response = await fetch(" /api/auth/check");
       if (response.ok) {
         const data = await response.json();
        return  resolve({ data });
@@ -48,7 +48,7 @@ export function checkAuth() {
 export function resetPasswordRequest(email) {
   return new Promise(async (resolve, reject) => {
     try {
-      const response = await fetch("/auth/reset-password-request",{
+      const response = await fetch(" /api/auth/reset-password-request",{
         method: "POST",
         body: JSON.stringify(email),
         headers: { "content-type": "application/json" },
@@ -68,7 +68,7 @@ export function resetPasswordRequest(email) {
 export function resetPassword(data) {
   return new Promise(async (resolve, reject) => {
     try {
-      const response = await fetch("/auth/reset-password",{
+      const response = await fetch(" /api/auth/reset-password",{
         method: "POST",
         body: JSON.stringify(data),
         headers: { "content-type": "application/json" },
@@ -90,7 +90,7 @@ export function resetPassword(data) {
 export function signOutUser() {
   return new Promise(async (resolve, reject) => {
     try {
-      const response = await fetch("/auth/logout");
+      const response = await fetch(" /api/auth/logout");
       if (response.ok) {
        resolve({data: "success"});
       } else {
