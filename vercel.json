@@ -10,6 +10,6 @@
     }
   ],
  {
-  "rewrites": [{ "source": "/api/(.*)", "destination": "BackEnd-ecommerce/Index.js" }]
+  "rewrites": [{ "source": "/(.*)", "destination": "BackEnd-ecommerce/Index.js" }]
 }
 }
