@@ -9,5 +9,22 @@
       "use": "@vercel/static"
     }
   ],
- "rewrites": [{ "source": "/(.*)", "destination": "BackEnd-ecommerce/Index.js" }]
+ "routes":[
+    {
+      "src": "/api/(.*)",
+      "dest": "BackEnd-ecommerce/Index.js"
+    },
+    {
+      "src": "/",
+      "dest": "BackEnd-ecommerce/build/index.html"
+    },
+    {
+      "src": "/api/auth",
+      "dest": "BackEnd-ecommerce/build/index.html"
+    },
+    {
+      "src": "/(.+)",
+      "dest": "BackEnd-ecommerce/build/$1"
+    }
+  ]
 }
