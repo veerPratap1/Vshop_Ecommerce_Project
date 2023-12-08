@@ -116,7 +116,7 @@ server.use("/colour", isAuth(), ColourRouter.router);
 server.use("/size", isAuth(), SizeRouter.router);
 server.use("/message", isAuth(), MessageRoute.router);
 server.use("/brands", BrandRouter.router);
-server.use("/users", isAuth(), UserRouter.router);
+server.use("/api/users", isAuth(), UserRouter.router);
 server.use("/auth", AuthRouter.router);
 server.use("/carts", isAuth(), CartRouter.router);
 server.use("/orders", isAuth(), OrderRouter.router);

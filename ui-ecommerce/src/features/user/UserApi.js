@@ -9,7 +9,7 @@ export function fetchUserOrderById() {
 }
 export function fetchLogedInUser() {
   return new Promise(async (resolve) =>{
-    const response = await fetch("/users/own")
+    const response = await fetch(" /api/users/own")
     const data = await response.json()
     resolve({data})
   }
@@ -18,7 +18,7 @@ export function fetchLogedInUser() {
 
 export function UpdateUserInfo(user) {
   return new Promise(async (resolve) =>{
-    const response = await fetch("/users/"+user.id, {
+    const response = await fetch(" /api/users/"+user.id, {
       method : "PATCH",
       body : JSON.stringify(user),
       headers : {"content-type": "application/json"}
@@ -31,7 +31,7 @@ export function UpdateUserInfo(user) {
 
 export function fetchAllUser() {
   return new Promise(async (resolve) =>{
-    const response = await fetch("/users/all")
+    const response = await fetch(" /api/users/all")
     const data = await response.json()
     resolve({data})
   }
